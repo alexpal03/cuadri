@@ -83,10 +83,8 @@ class Cuadri():
     def zk2(self):
         aux = (self.D - self.A)/(2*self.C)
         return -1*aux + (aux**2 + self.B/self.C)**0.5
+    
 
-    @property
-    def z0(self):
-        return (self.B/self.C)**0.5
 
 
 
