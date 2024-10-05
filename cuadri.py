@@ -35,7 +35,12 @@ class Cuadri():
     
     @property
     def matriz_inv(self):
-        return np.linalg.inv(self._mdir)
+        dd = np.linalg.det(self._mdir)
+        E = self.D/dd
+        F = self.B/dd
+        G = self.C/dd
+        H = self.A/dd
+        return np.array([[E, F],[G, H]])
     
     @property
     def matriz_z(self):
@@ -179,5 +184,9 @@ class Cuadri():
         
     @staticmethod
     def por_inv(E, F, G, H):
-        [[A, B], [C, D]] = np.linalg.inv([[E,F],[G,H]])
+        di = np.linalg.det([[E,F],[G,H]])
+        A = H/di
+        B = F/di
+        C = G/di
+        D = E/di
         return Cuadri(A, B, C, D)
