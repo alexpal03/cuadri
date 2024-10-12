@@ -45,6 +45,11 @@ class CuadriD(cuadri.Cuadri):
         print("Función no disponible en tipo D")
         return None
     
+    @property
+    def tetha(self):
+        print("Atributo no disponible en tipo D")
+        return None
+    
     @staticmethod
     def aten(vin, vout, zk2=1):
         print("Función no disponible en tipo D")
