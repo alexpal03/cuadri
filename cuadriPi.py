@@ -52,6 +52,11 @@ class CuadriPi(cuadri.Cuadri):
     def adapt(vin, vout, zk2=1):
         print("Función no disponible en tipo Pi")
         return None
+    
+    @property
+    def tetha(self):
+        print("Atributo no disponible en tipo Pi")
+        return None
 
 
     @staticmethod
