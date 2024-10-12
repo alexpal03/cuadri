@@ -37,3 +37,15 @@ class CuadriD(cuadri.Cuadri):
     @property
     def z3(self):
         return self._z3
+    
+
+    
+    @staticmethod
+    def adapt(zin, zout, corr=0.634):
+        print("Función no disponible en tipo D")
+        return None
+    
+    @staticmethod
+    def aten(vin, vout, zk2=1):
+        print("Función no disponible en tipo D")
+        return None
