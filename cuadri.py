@@ -93,7 +93,6 @@ class Cuadri():
 
 
 
-
     def ftransfv(self, zout):
         return 1/self.fpropv(zout)
     
