@@ -1,5 +1,5 @@
 import cuadri
-
+import math
 
 class CuadriPi(cuadri.Cuadri):
     """
@@ -45,3 +45,19 @@ class CuadriPi(cuadri.Cuadri):
         zb = self.z1*self.z3/den
         zc = self.z2*self.z3/den
         return cuadri.CuadriT(za,zb,zc)
+
+
+    
+    @staticmethod
+    def adapt(vin, vout, zk2=1):
+        print("Función no disponible en tipo Pi")
+        return None
+
+
+    @staticmethod
+    def aten(vin, vout, zk2=1):
+        ratiov = vin/vout
+        alpha = math.log(ratiov)
+        z1 = z3 = zk2/math.tanh(alpha/2)
+        z2 = zk2*math.sinh(alpha)
+        return CuadriPi(z1, z2, z3)
