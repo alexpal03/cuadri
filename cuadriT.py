@@ -1,4 +1,5 @@
 import cuadri
+import math
 
 
 class CuadriT(cuadri.Cuadri):
@@ -10,6 +11,7 @@ class CuadriT(cuadri.Cuadri):
              │ 
     ■────────┴────────■  
     """
+
     def __init__(self, z1, z2, z3):
 
         self._z1 = z1
@@ -37,10 +39,48 @@ class CuadriT(cuadri.Cuadri):
         return self._z3
 
 
-
     def conv_pi(self):
         num = self.z1*self.z2 + self.z1*self.z3 + self.z2*self.z3
         za = num/self.z3
         zb = num/self.z2
         zc = num/self.z1
         return cuadri.CuadriPi(za,zb,zc)
+    
+
+
+    @staticmethod
+    def adapt(zin, zout, corr=0.634):
+
+        ratioz = zin/zout if zin > zout else zout/zin
+        sqratioz_fpropv = (zin/zout)**0.5
+        tetha = math.acosh(ratioz**0.5)
+        # vin/vout
+        fpropv = sqratioz_fpropv * math.e**tetha
+        # Corrección para que no sea tipo L, Li
+        # La corrección se puede variar a gusto, pero debe ser positiva
+        # Probar con corrección = 0 daría z1 = 0 o z3 = 0, resultando en configuración tipo L, Li
+        fpropv_rec = fpropv + corr
+        tetha_rec = math.log(fpropv_rec / sqratioz_fpropv) 
+
+        sinht = math.sinh(tetha_rec)
+        cosht = math.cosh(tetha_rec)
+        sqmulz = (zin*zout)**0.5
+        z1 = (zin * cosht - sqmulz) / sinht
+        z2 = sqmulz / sinht
+        z3 = (zout * cosht - sqmulz) / sinht
+        c = CuadriT(z1, z2, z3)
+        c._tetha = tetha_rec
+        return c
+
+    @property
+    def tetha(self):
+        return self._tetha
+
+
+    @staticmethod
+    def aten(vin, vout, zk2=1):
+        fpropv = vin/vout
+        alpha = math.log(fpropv)
+        z1 = z3 = zk2*math.tanh(alpha/2)
+        z2 = zk2/math.sinh(alpha)
+        return CuadriT(z1, z2, z3)
