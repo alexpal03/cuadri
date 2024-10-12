@@ -48,13 +48,11 @@ class CuadriLi(cuadri.Cuadri):
         sqmulz = (zin*zout)**0.5
         z1 = sqmulz / sinht
         z2 = sqmulz * sinht
-        c = CuadriLi(z1, z2)
-        c._tetha = tetha
-        return c
+        return CuadriLi(z1, z2)
     
     @property
     def tetha(self):
-        return self._tetha
+        return math.acosh((self.zim2/self.zim1)**0.5)
     
 
 
