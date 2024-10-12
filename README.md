@@ -132,60 +132,60 @@ Las siguientes funciones necesitan un parámetro `zout` que identifica la carga 
 
 * Ejemplo 1:
 
-![ej1](https://github.com/user-attachments/assets/815e1da4-a71c-430c-9d63-82e78aad704a)
+   ![ej1](https://github.com/user-attachments/assets/815e1da4-a71c-430c-9d63-82e78aad704a)
 
 
-Resolución:
+   Resolución:
 
-```python
-from cuadri import *
-
-c = CuadriTPuente(600,450,1800,4800)
-
-print("Matriz z: ")
-print(c.matriz_z)
-print("Matriz directa: ")
-print(c.matriz_dir)
-print("zk1:  ", c.zk1)
-print("zk2:  ", c.zk2)
-print("zim1: ", c.zim1)
-print("zim2: ", c.zim2)
-
-print("prop v iter:  ", c.fpropv(c.zk2))
-print("prop i iter:  ", c.fpropi(c.zk2))
-print("alpha v iter: ", c.alphav(c.zk2))
-print("alpha i iter: ", c.alphai(c.zk2))
-print("prop v imag:  ", c.fpropv(c.zim2))
-print("prop i imag:  ", c.fpropi(c.zim2))
-print("alpha v imag: ",c.alphav(c.zim2))
-print("alpha i imag: ", c.alphai(c.zim2))
-```
-
-![ej1 res](https://github.com/user-attachments/assets/078760c7-0953-4da6-8c94-c8af4b81b334)
+   ```python
+   from cuadri import *
+   
+   c = CuadriTPuente(600,450,1800,4800)
+   
+   print("Matriz z: ")
+   print(c.matriz_z)
+   print("Matriz directa: ")
+   print(c.matriz_dir)
+   print("zk1:  ", c.zk1)
+   print("zk2:  ", c.zk2)
+   print("zim1: ", c.zim1)
+   print("zim2: ", c.zim2)
+   
+   print("prop v iter:  ", c.fpropv(c.zk2))
+   print("prop i iter:  ", c.fpropi(c.zk2))
+   print("alpha v iter: ", c.alphav(c.zk2))
+   print("alpha i iter: ", c.alphai(c.zk2))
+   print("prop v imag:  ", c.fpropv(c.zim2))
+   print("prop i imag:  ", c.fpropi(c.zim2))
+   print("alpha v imag: ",c.alphav(c.zim2))
+   print("alpha i imag: ", c.alphai(c.zim2))
+   ```
+   
+   ![ej1 res](https://github.com/user-attachments/assets/078760c7-0953-4da6-8c94-c8af4b81b334)
 
 ---
 
 * Ejemplo 2 (clase práctica 27/09):
 
-![ej 2](https://github.com/user-attachments/assets/7212e6e5-6aea-4681-b271-74bdb09068c0)
-
-Resolución:
-
-```python
-from cuadri import *
-
-c1 = CuadriT(2200,4700,1500)
-c2 = CuadriT(3300,6800,1000)
-c3 = CuadriT(5600,2200,1800)
-
-ctotal = c1.casc(c2).casc(c3)
-
-print('Matriz directa:')
-print(ctotal.matriz_dir)
-print('alpha v iter: ', ctotal.alphav(ctotal.zk2))
-```
-
-![ej2 res](https://github.com/user-attachments/assets/15228cc6-f34e-4566-b184-67a6ffaee818)
+   ![ej 2](https://github.com/user-attachments/assets/7212e6e5-6aea-4681-b271-74bdb09068c0)
+   
+   Resolución:
+   
+   ```python
+   from cuadri import *
+   
+   c1 = CuadriT(2200,4700,1500)
+   c2 = CuadriT(3300,6800,1000)
+   c3 = CuadriT(5600,2200,1800)
+   
+   ctotal = c1.casc(c2).casc(c3)
+   
+   print('Matriz directa:')
+   print(ctotal.matriz_dir)
+   print('alpha v iter: ', ctotal.alphav(ctotal.zk2))
+   ```
+   
+   ![ej2 res](https://github.com/user-attachments/assets/15228cc6-f34e-4566-b184-67a6ffaee818)
 
 
 # Asociaciones
@@ -322,51 +322,51 @@ Se pasa como parámetro la tensión de entrada `vin`, la tensión de salida dese
 
 * Ejemplo
 
-![ej aten L](https://github.com/user-attachments/assets/aed6ff85-f488-4f36-87f8-7ce21b3b9e9f)
-
-Resolución:
-
-```python
-from cuadri import *
-
-vin = 40
-vout = 8
-zk2 = 300
-c = CuadriL.aten(vin, vout, zk2)
-
-print("z1:", c.z1)
-print("z2:", c.z2)
-print("zk2:", c.zk2)
-print("fprop v:", c.fpropv(zk2))
-```
-
-![ej aten L res](https://github.com/user-attachments/assets/00628105-1821-4de0-aed1-b1121e779f6e)
+   ![ej aten L](https://github.com/user-attachments/assets/aed6ff85-f488-4f36-87f8-7ce21b3b9e9f)
+   
+   Resolución:
+   
+   ```python
+   from cuadri import *
+   
+   vin = 40
+   vout = 8
+   zk2 = 300
+   c = CuadriL.aten(vin, vout, zk2)
+   
+   print("z1:", c.z1)
+   print("z2:", c.z2)
+   print("zk2:", c.zk2)
+   print("fprop v:", c.fpropv(zk2))
+   ```
+   
+   ![ej aten L res](https://github.com/user-attachments/assets/00628105-1821-4de0-aed1-b1121e779f6e)
 
 ## Tipo Li
 
 Se pasa como parámetro la tensión de entrada `vin`, la tensión de salida deseada `vout`, y la impedancia iterativa `zk2`
 
 * Ejemplo
-  
-![ej aten Li](https://github.com/user-attachments/assets/6bf5fff4-889f-4b31-8b88-172e87817bf6)
-
-
-Resolución:
-
-```python
-from cuadri import *
-
-vin = 40
-vout = 8
-zk2 = 300
-c = CuadriLi.aten(vin, vout, zk2)
-
-print("z1:", c.z1)
-print("z2:", c.z2)
-print("zk2:", c.zk2)
-print("fprop v:", c.fpropv(zk2))
-```
-![ej aten Li res](https://github.com/user-attachments/assets/a1fc678d-92c9-4d7b-8b43-61efa7ff8940)
+     
+   ![ej aten Li](https://github.com/user-attachments/assets/6bf5fff4-889f-4b31-8b88-172e87817bf6)
+   
+   
+   Resolución:
+   
+   ```python
+   from cuadri import *
+   
+   vin = 40
+   vout = 8
+   zk2 = 300
+   c = CuadriLi.aten(vin, vout, zk2)
+   
+   print("z1:", c.z1)
+   print("z2:", c.z2)
+   print("zk2:", c.zk2)
+   print("fprop v:", c.fpropv(zk2))
+   ```
+   ![ej aten Li res](https://github.com/user-attachments/assets/a1fc678d-92c9-4d7b-8b43-61efa7ff8940)
 
 ## Tipo T
 
@@ -374,23 +374,23 @@ Se pasa como parámetro la tensión de entrada `vin`, la tensión de salida dese
 
 * Ejemplo
 
-  ![ej aten T](https://github.com/user-attachments/assets/aa91a615-b311-4458-ac28-ac03083e39e6)
+   ![ej aten T](https://github.com/user-attachments/assets/aa91a615-b311-4458-ac28-ac03083e39e6)
 
-Resolución:
-
-```python
-vin = 40
-vout = 16
-zk2 = 8
-c = CuadriT.aten(vin, vout, zk2)
-
-print("z1:", c.z1)
-print("z2:", c.z2)
-print("z3:", c.z3)
-print("zk2:", c.zk2)
-print("fprop v:", c.fpropv(zk2))
-```
-![ej aten T res](https://github.com/user-attachments/assets/b6aa48d8-418d-476a-9016-576c2ab45008)
+   Resolución:
+   
+   ```python
+   vin = 40
+   vout = 16
+   zk2 = 8
+   c = CuadriT.aten(vin, vout, zk2)
+   
+   print("z1:", c.z1)
+   print("z2:", c.z2)
+   print("z3:", c.z3)
+   print("zk2:", c.zk2)
+   print("fprop v:", c.fpropv(zk2))
+   ```
+   ![ej aten T res](https://github.com/user-attachments/assets/b6aa48d8-418d-476a-9016-576c2ab45008)
 
 ## Tipo Pi
 
@@ -398,24 +398,24 @@ Se pasa como parámetro la tensión de entrada `vin`, la tensión de salida dese
 
 * Ejemplo
 
-![ej aten Pi](https://github.com/user-attachments/assets/aacf2f7e-da4c-44bd-8be8-d4800917d2cf)
-
-Resolución:
-
-```python
-vin = 40
-vout = 16
-zk2 = 8
-c = CuadriPi.aten(vin, vout, zk2)
-
-print("z1:", c.z1)
-print("z2:", c.z2)
-print("z3:", c.z3)
-print("zk2:", c.zk2)
-print("fprop v:", c.fpropv(zk2))
-```
-
-![ej aten Pi res](https://github.com/user-attachments/assets/1dbf492f-bd39-45ba-9fad-42dfe2ac87db)
+   ![ej aten Pi](https://github.com/user-attachments/assets/aacf2f7e-da4c-44bd-8be8-d4800917d2cf)
+   
+   Resolución:
+   
+   ```python
+   vin = 40
+   vout = 16
+   zk2 = 8
+   c = CuadriPi.aten(vin, vout, zk2)
+   
+   print("z1:", c.z1)
+   print("z2:", c.z2)
+   print("z3:", c.z3)
+   print("zk2:", c.zk2)
+   print("fprop v:", c.fpropv(zk2))
+   ```
+   
+   ![ej aten Pi res](https://github.com/user-attachments/assets/1dbf492f-bd39-45ba-9fad-42dfe2ac87db)
 
 
 
