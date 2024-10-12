@@ -46,13 +46,11 @@ class CuadriL(cuadri.Cuadri):
         sqmulz = (zin*zout)**0.5
         z1 = sqmulz * sinht
         z2 = sqmulz / sinht
-        c = CuadriL(z1, z2)
-        c._tetha = tetha
-        return c
+        return CuadriL(z1, z2)
 
     @property
     def tetha(self):
-        return self._tetha
+        return math.acosh((self.zim1/self.zim2)**0.5)
 
 
 
