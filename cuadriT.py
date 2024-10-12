@@ -68,13 +68,11 @@ class CuadriT(cuadri.Cuadri):
         z1 = (zin * cosht - sqmulz) / sinht
         z2 = sqmulz / sinht
         z3 = (zout * cosht - sqmulz) / sinht
-        c = CuadriT(z1, z2, z3)
-        c._tetha = tetha_rec
-        return c
+        return CuadriT(z1, z2, z3)
 
     @property
     def tetha(self):
-        return self._tetha
+        return math.asinh(((self.zim1*self.zim2)**0.5)/self.z2)
 
 
     @staticmethod
