@@ -48,6 +48,11 @@ class CuadriTPuente(cuadri.Cuadri):
     def adapt(zin, zout, corr=0.634):
         print("Función no disponible en tipo T Puente")
         return None
+    
+    @property
+    def tetha(self):
+        print("Atributo no disponible en tipo T Puente")
+        return None
 
     @staticmethod
     def aten(vin, vout, zk2=1):
