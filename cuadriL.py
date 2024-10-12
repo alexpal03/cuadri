@@ -1,4 +1,5 @@
 import cuadri
+import math
 
 
 class CuadriL(cuadri.Cuadri):
@@ -28,5 +29,37 @@ class CuadriL(cuadri.Cuadri):
     @property
     def z2(self):
         return self._z2
-        
+
+
+
+    @staticmethod
+    def adapt(zin, zout):
+
+        # Error, no se podrá lograr con esta configuración L
+        if zout > zin:
+            print("No se permite Zout > Zin... probar configuración Li")
+            return None
+
+        ratioz = zin/zout
+        tetha = math.acosh(ratioz**0.5)
+        sinht = math.sinh(tetha)
+        sqmulz = (zin*zout)**0.5
+        z1 = sqmulz * sinht
+        z2 = sqmulz / sinht
+        c = CuadriL(z1, z2)
+        c._tetha = tetha
+        return c
+
+    @property
+    def tetha(self):
+        return self._tetha
+
+
+
+    @staticmethod
+    def aten(vin, vout, zk2=1):
+        ratiov = vin/vout
+        z1 = zk2-zk2/ratiov
+        z2 = zk2/(ratiov - 1)
+        return CuadriL(z1, z2)
 
