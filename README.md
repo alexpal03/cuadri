@@ -1,9 +1,9 @@
 
 # cuadri
 
-- [Importar módulo](##Importar-módulo)
-- [Tipos de cuadripolos](##Tipos-de-cuadripolos)
-- [Parámetros](##Parámetros)
+- [Importar módulo](#Importar-módulo)
+- [Tipos de cuadripolos](#Tipos-de-cuadripolos)
+- [Parámetros](#Parámetros)
 - [Impedancias imagenes](#Impedancias-imagenes)
 - [Impedancias iterativas](#Impedancias-iterativas)
 - [Funciones](#Funciones)
